@@ -1,0 +1,19 @@
+{
+  "name": "ShadowDOM",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.9.6"
+  },
+  "browserslist": [
+    "last 2 version"
+  ]
+}
