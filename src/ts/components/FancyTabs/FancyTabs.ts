@@ -3,6 +3,8 @@ import { FancyTabContent } from "./FancyTabContent";
 class FancyTabs extends HTMLElement{
 
   private domContent: string = FancyTabContent;
+  public tabs: HTMLElement[] = [];
+  public panels: HTMLElement[] = [];
 
   constructor(){
     super();

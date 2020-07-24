@@ -5,6 +5,20 @@ Last Updated: 2010-09-17
 Author: Richard Clark - http://richclarkdesign.com 
 Twitter: @rich_clark
 */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+#app{
+  background-color: #d8d8d8;
+  padding: 20px;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
 
 html,
 body,

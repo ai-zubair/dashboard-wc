@@ -6,29 +6,13 @@
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./src/styles/main.css" />
-  <style>
-    html {
-        -webkit-text-size-adjust: 100%;
-        -ms-text-size-adjust: 100%;
-    }
-    * {
-        box-sizing: border-box;
-    }
-    #app{
-      background-color: #d8d8d8;
-      padding: 20px;
-      display: flex;
-      height: 100vh;
-      width: 100vw;
-    }
-  </style>
 </head>
 <body>
   <div id="app">
 
     <fancy-tabs>
-      <button slot="tab">Appointments</button>
-      <div slot="panel">Panel 1</div>
+      <button slot="tab" active>Appointments</button>
+      <div slot="panel" active>Panel 1</div>
 
       <button slot="tab">Professionals</button>
       <div slot="panel">Panel 2</div>
