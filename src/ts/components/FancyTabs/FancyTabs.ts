@@ -12,6 +12,7 @@ class FancyTabs extends HTMLElement{
   public tabMap: TabMap = {};
   public domContent: string = FancyTabContent;
   public activeTabId: string = "";
+  public defaultActiveTabId: string = "";
   public tabTitle: HTMLElement[] = [];
   public tabPanel: HTMLElement[] = [];
 
@@ -39,6 +40,9 @@ class FancyTabs extends HTMLElement{
   createTabMap = () => {
     this.tabTitle.forEach( (tabTitle, tabTitleIndex) => {
       const tabId = tabTitle.getAttribute("tabId");
+      if(tabId && tabTitleIndex === 0){
+        this.defaultActiveTabId = tabId;
+      }
       const isTabActive = tabTitle.hasAttribute("active") ? true : false;
       if(tabId && isTabActive){
         this.activeTabId = tabId;
@@ -52,29 +56,36 @@ class FancyTabs extends HTMLElement{
       }
     })
     if(!this.activeTabId){
-      this.activeTabId = Object.keys(this.tabMap)[0];
-      this.tabMap[this.activeTabId].tabTitle.setAttribute("active","true");
+      this.setActiveTab();
     }
   }
 
-  setActiveTab = ( tabId: string ): void => {
-
+  unsetActiveTab = (): void => {
+    const activeTabTitle = this.getActiveTabTitle();
+    activeTabTitle.removeAttribute("active");
   }
 
-  getActiveTab = () => {
+  setActiveTab = ( tabId = this.defaultActiveTabId ): void => {
+    if(this.activeTabId){
+      this.unsetActiveTab();
+    }
+    const tabTitle = this.tabMap[tabId].tabTitle;
+    this.activeTabId = tabId;
+    tabTitle.setAttribute("active","true");
+  }
+
+  getActiveTabTitle = () => {
     return this.tabMap[this.activeTabId].tabTitle;
   }
 
   bindClickHandlers = () => {
     this.tabTitle.forEach( tabTitle => {
       tabTitle.addEventListener("click",(event)=>{
-        const activeTab = this.getActiveTab();
-        activeTab.removeAttribute("active");
+        this.unsetActiveTab();
         const currentTab = event.target as HTMLElement;
         const currentTabId = currentTab.getAttribute("tabId");
-        currentTab.setAttribute("active", "true");
         if(currentTabId){
-          this.activeTabId = currentTabId
+          this.setActiveTab(currentTabId);
         }
       })
     })
