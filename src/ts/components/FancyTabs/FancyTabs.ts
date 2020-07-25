@@ -25,7 +25,9 @@ class FancyTabs extends HTMLElement{
   }
 
   disconnectedCallback(){
-
+    this.tabTitle.forEach( tabTitle => {
+      tabTitle.removeEventListener("click", this.handleTabTitleClick);
+    } )
   }
 
   attributeChangedCallback(){

@@ -29,19 +29,21 @@ export const FancyTabContent = `
       flex-basis: calc(100%/3);
       color: black;
       font-size: 20px;
-      background-color: #ececec;
+      background-color: #a9ece8;
       font-weight: 300;
       font-family: 'Roboto', sans-serif;
       transition: font-size 0.5s ease;
+      color : white;
       outline: none;
     }
     ::slotted([slot="tab"][active]){
       font-weight: bolder;
       background-color: white;
+      color: black;
     }
     ::slotted(:not([active])[slot="tab"]:hover){
       cursor: pointer;
-      background-color: #f3f3f3;
+      background-color: #c9f1ee;
       font-size: 21px;
       font-weight: bolder;
     }
