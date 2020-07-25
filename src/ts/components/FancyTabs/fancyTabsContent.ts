@@ -14,7 +14,13 @@ export const FancyTabContent = `
       flex-direction: row;
       width: 100%;
       flex-basis: 10%;
+      overflow: scroll;
+      scrollbar-width: none;
 
+    }
+    .tab-container::-webkit-scrollbar{
+      display: none;
+      width: 0px;
     }
     ::slotted([slot="tab"]){
       width: auto;
