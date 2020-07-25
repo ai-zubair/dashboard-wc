@@ -27,6 +27,7 @@ export const FancyTabContent = `
       font-weight: 300;
       font-family: 'Roboto', sans-serif;
       transition: font-size 0.5s ease;
+      outline: none;
     }
     ::slotted([slot="tab"][active]){
       font-weight: bolder;

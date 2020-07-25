@@ -51,18 +51,33 @@ class FancyTabs extends HTMLElement{
         }
       }
     })
+    if(!this.activeTabId){
+      this.activeTabId = Object.keys(this.tabMap)[0];
+      this.tabMap[this.activeTabId].tabTitle.setAttribute("active","true");
+    }
+  }
+
+  setActiveTab = ( tabId: string ): void => {
+
+  }
+
+  getActiveTab = () => {
+    return this.tabMap[this.activeTabId].tabTitle;
   }
 
   bindClickHandlers = () => {
-    // this.tabTitle.forEach( tabTitle => {
-    //   tabTitle.addEventListener("click",(event)=>{
-    //     const activeTabId = this.activeTabId;
-
-    //     const currentTab = event.target as HTMLElement;
-    //     const currentTabId = currentTab.getAttribute("tabId");
-
-    //   })
-    // } )
+    this.tabTitle.forEach( tabTitle => {
+      tabTitle.addEventListener("click",(event)=>{
+        const activeTab = this.getActiveTab();
+        activeTab.removeAttribute("active");
+        const currentTab = event.target as HTMLElement;
+        const currentTabId = currentTab.getAttribute("tabId");
+        currentTab.setAttribute("active", "true");
+        if(currentTabId){
+          this.activeTabId = currentTabId
+        }
+      })
+    })
   }
 
 }
