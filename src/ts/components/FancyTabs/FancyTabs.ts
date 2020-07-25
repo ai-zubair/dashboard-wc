@@ -1,12 +1,6 @@
-import { FancyTabContent } from "./FancyTabContent";
+import { FancyTabContent } from "./fancyTabsContent";
+import { TabMap } from "./types";
 
-interface TabData {
-  tabTitle: HTMLElement;
-  tabPanel: HTMLElement;
-}
-interface TabMap {
-  [key: string] : TabData;
-}
 class FancyTabs extends HTMLElement{
 
   public tabMap: TabMap = {};
@@ -21,13 +15,6 @@ class FancyTabs extends HTMLElement{
     this.bindDomContent();
   }
 
-  bindDomContent = () => {
-    const contentTemplate = document.createElement("template");
-    contentTemplate.innerHTML = this.domContent;
-    const shadowRoot = this.attachShadow({mode: "open"});
-    shadowRoot.appendChild(contentTemplate.content.cloneNode(true));
-  }
-
   connectedCallback(){
     const tabSlot = this.shadowRoot?.getElementById("tab-slot") as HTMLSlotElement;
     const panelSlot = this.shadowRoot?.getElementById("panel-slot") as HTMLSlotElement;
@@ -37,58 +24,77 @@ class FancyTabs extends HTMLElement{
     this.bindClickHandlers();
   }
 
-  createTabMap = () => {
+  disconnectedCallback(){
+
+  }
+
+  attributeChangedCallback(){
+
+  }
+
+  bindDomContent = (): void => {
+    const contentTemplate = document.createElement("template");
+    contentTemplate.innerHTML = this.domContent;
+    const shadowRoot = this.attachShadow({mode: "open"});
+    shadowRoot.appendChild(contentTemplate.content.cloneNode(true));
+  }
+
+  createTabMap = (): void => {
     this.tabTitle.forEach( (tabTitle, tabTitleIndex) => {
       const tabId = tabTitle.getAttribute("tabId");
-      if(tabId && tabTitleIndex === 0){
-        this.defaultActiveTabId = tabId;
-      }
-      const isTabActive = tabTitle.hasAttribute("active") ? true : false;
-      if(tabId && isTabActive){
-        this.activeTabId = tabId;
-      }
-
       if(tabId){
+        if(tabTitleIndex === 0){
+          this.defaultActiveTabId = tabId;
+        }
+        const isTabActive = tabTitle.hasAttribute("active") ? true : false;
         this.tabMap[tabId] = {
           tabTitle: tabTitle,
           tabPanel: this.tabPanel[tabTitleIndex]
         }
+        if(isTabActive){
+          this.setActiveTab(tabId);
+        }
       }
     })
+
     if(!this.activeTabId){
       this.setActiveTab();
     }
   }
 
+  bindClickHandlers = (): void => {
+    this.tabTitle.forEach( tabTitle => {
+      tabTitle.addEventListener("click", this.handleTabTitleClick)
+    })
+  }
+
   unsetActiveTab = (): void => {
-    const activeTabTitle = this.getActiveTabTitle();
+    const [activeTabTitle, activeTabPanel] = this.getActiveTab();
     activeTabTitle.removeAttribute("active");
+    activeTabPanel.removeAttribute("active");
   }
 
   setActiveTab = ( tabId = this.defaultActiveTabId ): void => {
     if(this.activeTabId){
       this.unsetActiveTab();
     }
-    const tabTitle = this.tabMap[tabId].tabTitle;
     this.activeTabId = tabId;
-    tabTitle.setAttribute("active","true");
+    const [activeTabTitle,activeTabPanel] = this.getActiveTab();
+    activeTabTitle.setAttribute("active","true");
+    activeTabPanel.setAttribute("active","true");
   }
 
-  getActiveTabTitle = () => {
-    return this.tabMap[this.activeTabId].tabTitle;
+  getActiveTab = (): HTMLElement[] => {
+    return [this.tabMap[this.activeTabId].tabTitle, this.tabMap[this.activeTabId].tabPanel ];
   }
 
-  bindClickHandlers = () => {
-    this.tabTitle.forEach( tabTitle => {
-      tabTitle.addEventListener("click",(event)=>{
-        this.unsetActiveTab();
-        const currentTab = event.target as HTMLElement;
-        const currentTabId = currentTab.getAttribute("tabId");
-        if(currentTabId){
-          this.setActiveTab(currentTabId);
-        }
-      })
-    })
+  handleTabTitleClick = (event: MouseEvent): void => {
+    this.unsetActiveTab();
+    const targetTab = event.target as HTMLElement;
+    const targetTabId = targetTab.getAttribute("tabId");
+    if(targetTabId){
+      this.setActiveTab(targetTabId);
+    }
   }
 
 }

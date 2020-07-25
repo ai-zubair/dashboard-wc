@@ -44,9 +44,12 @@ export const FancyTabContent = `
       background-color: #fff;
       padding: 10px;
     }
-    ::slotted([slot="panel"]){
+    ::slotted([slot="panel"][active]){
       width: 100%;
       height: 100%;
+    }
+    ::slotted(:not([active])[slot="panel"]){
+      display: none;
     }
   </style>
 
