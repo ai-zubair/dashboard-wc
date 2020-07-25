@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "predeploy" : "rm -rf dist && parcel index.html --public-url /dashboard-wc",
-    "deploy":"gh-pages -d dist"
+    "predeploy" : "parcel index.html --public-url ./dist",
+    "deploy":"gh-pages -d ./dist"
   },
   "keywords": [],
   "author": "",
