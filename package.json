@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "predeploy": "parcel build index.html --public-url /dashboard-wc/",
+    "predeploy": "rm -rf dist && parcel build index.html --public-url /dashboard-wc/",
     "deploy":"gh-pages -d ./dist"
   },
   "keywords": [],

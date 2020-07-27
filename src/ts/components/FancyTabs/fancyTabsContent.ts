@@ -7,7 +7,7 @@ export const FancyTabContent = `
       height: 100%;
       contain: content;
       border-radius: 6px;
-      box-shadow: 0px 0px 10px 0px #b4b4b4;
+      box-shadow: 0px 0px 10px 0px #444444;
     }
     .tab-container {
       display: flex;
@@ -29,7 +29,7 @@ export const FancyTabContent = `
       flex-basis: calc(100%/3);
       color: black;
       font-size: 20px;
-      background-color: #a9ece8;
+      background-color: #607D8B;
       font-weight: 300;
       font-family: 'Roboto', sans-serif;
       transition: font-size 0.5s ease;
@@ -43,7 +43,7 @@ export const FancyTabContent = `
     }
     ::slotted(:not([active])[slot="tab"]:hover){
       cursor: pointer;
-      background-color: #c9f1ee;
+      background-color: #455A64;
       font-size: 21px;
       font-weight: bolder;
     }

@@ -15,7 +15,7 @@ class FancyTabs extends HTMLElement{
     this.bindDomContent();
   }
 
-  connectedCallback(){
+  connectedCallback(): void{
     const tabSlot = this.shadowRoot?.getElementById("tab-slot") as HTMLSlotElement;
     const panelSlot = this.shadowRoot?.getElementById("panel-slot") as HTMLSlotElement;
     this.tabTitle = tabSlot.assignedNodes({flatten: true}) as HTMLElement[];
@@ -24,13 +24,13 @@ class FancyTabs extends HTMLElement{
     this.bindClickHandlers();
   }
 
-  disconnectedCallback(){
+  disconnectedCallback(): void{
     this.tabTitle.forEach( tabTitle => {
       tabTitle.removeEventListener("click", this.handleTabTitleClick);
     } )
   }
 
-  attributeChangedCallback(){
+  attributeChangedCallback(): void{
 
   }
 
@@ -48,11 +48,11 @@ class FancyTabs extends HTMLElement{
         if(tabTitleIndex === 0){
           this.defaultActiveTabId = tabId;
         }
-        const isTabActive = tabTitle.hasAttribute("active") ? true : false;
         this.tabMap[tabId] = {
           tabTitle: tabTitle,
           tabPanel: this.tabPanel[tabTitleIndex]
         }
+        const isTabActive = tabTitle.hasAttribute("active") ? true : false;
         if(isTabActive){
           this.setActiveTab(tabId);
         }
@@ -60,7 +60,7 @@ class FancyTabs extends HTMLElement{
     })
 
     if(!this.activeTabId){
-      this.setActiveTab();
+      this.setActiveTab(this.defaultActiveTabId);
     }
   }
 
@@ -76,7 +76,7 @@ class FancyTabs extends HTMLElement{
     activeTabPanel.removeAttribute("active");
   }
 
-  setActiveTab = ( tabId = this.defaultActiveTabId ): void => {
+  setActiveTab = ( tabId: string ): void => {
     if(this.activeTabId){
       this.unsetActiveTab();
     }
@@ -87,7 +87,10 @@ class FancyTabs extends HTMLElement{
   }
 
   getActiveTab = (): HTMLElement[] => {
-    return [this.tabMap[this.activeTabId].tabTitle, this.tabMap[this.activeTabId].tabPanel ];
+    return [
+      this.tabMap[this.activeTabId].tabTitle, 
+      this.tabMap[this.activeTabId].tabPanel 
+    ];
   }
 
   handleTabTitleClick = (event: MouseEvent): void => {
