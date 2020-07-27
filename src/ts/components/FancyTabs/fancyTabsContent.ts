@@ -36,6 +36,11 @@ export const FancyTabContent = `
       color : white;
       outline: none;
     }
+    @media screen and (max-width: 576px){
+      ::slotted([slot="tab"]){
+        font-size: 14px;
+      }
+    }
     ::slotted([slot="tab"][active]){
       font-weight: bolder;
       background-color: white;
