@@ -56,6 +56,7 @@ export const FancyTabContent = `
       flex-basis: 90%;
       background-color: #fff;
       padding: 10px;
+      overflow: auto;
     }
     ::slotted([slot="panel"][active]){
       width: 100%;
