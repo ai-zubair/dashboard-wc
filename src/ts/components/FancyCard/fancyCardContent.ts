@@ -51,7 +51,7 @@ export const FancyCardContent = `
     .additional-details{
       display: none;
     }
-    :host([active]) .additional-details{
+    :host([active="true"]) .additional-details{
       grid-area: additional-details;
       display: grid;
       grid-template-areas: 'type-location payment-wrapper completion-wrapper';
