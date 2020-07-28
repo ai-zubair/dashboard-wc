@@ -47,18 +47,12 @@
     }
     .customer-details-wrapper{
       grid-area: customer-details;
-      .customer-name{
-        
-      }
       .customer-phone{
         display: none;
       }
     }
     .professional-details-wrapper{
       grid-area: professional-details;
-      .professional-name{
-    
-      }
       .professional-phone{
         display: none;
       }
@@ -66,9 +60,6 @@
     
     .date-wrapper{
       grid-area: date-details;
-      .date-scheduled{
-    
-      }
       .date-created{
         display: none;
       }
@@ -77,12 +68,6 @@
     .type-location-wrapper{
       grid-area: type-location;
       display: none;
-      .service-type{
-    
-      }
-      .service-location{
-      
-      }
     }
     
     .payment-wrapper{
@@ -91,16 +76,10 @@
       .service-cost{
         display: none;
       }
-      .payment-method{
-        
-      }
     }
     
     .completion-wrapper{
       grid-area: completion-wrapper;
-      .service-completed{
-        
-      }
       .customer-feedback{
         display: none;
       }
@@ -133,26 +112,17 @@
     grid-template-areas: 'customer-details professional-details date-details'
                          'type-location payment-wrapper completion-wrapper';
     .customer-details-wrapper{
-      .customer-name{
-        
-      }
       .customer-phone{
         display: block;
       }
     }
     .professional-details-wrapper{
-      .professional-name{
-    
-      }
       .professional-phone{
         display: block;
       }
     }
     
     .date-wrapper{
-      .date-scheduled{
-    
-      }
       .date-created{
         display: block;
       }
@@ -160,12 +130,6 @@
     
     .type-location-wrapper{
       display: block;
-      .service-type{
-    
-      }
-      .service-location{
-      
-      }
     }
     
     .payment-wrapper{
@@ -173,15 +137,9 @@
       .service-cost{
         display: block;
       }
-      .payment-method{
-      
-      }
     }
     
     .completion-wrapper{
-      .service-completed{
-        
-      }
       .customer-feedback{
         display: block;
       }
