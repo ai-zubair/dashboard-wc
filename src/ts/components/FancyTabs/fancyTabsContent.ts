@@ -29,7 +29,7 @@ export const FancyTabContent = `
       flex-basis: calc(100%/3);
       color: black;
       font-size: 20px;
-      background-color: #607D8B;
+      background-color: #4e829c;
       font-weight: 300;
       font-family: 'Roboto', sans-serif;
       transition: font-size 0.5s ease;
@@ -48,7 +48,7 @@ export const FancyTabContent = `
     }
     ::slotted(:not([active])[slot="tab"]:hover){
       cursor: pointer;
-      background-color: #455A64;
+      background-color: #40728c;
       font-size: 21px;
       font-weight: bolder;
     }
@@ -62,7 +62,8 @@ export const FancyTabContent = `
       width: 100%;
       height: 100%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
     ::slotted(:not([active])[slot="panel"]){
       display: none;

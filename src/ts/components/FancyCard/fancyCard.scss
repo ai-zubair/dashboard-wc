@@ -1,30 +1,40 @@
 :host{
   display: block;
-  transition: width 0.5s ease;
-  contain: content;
+  transition: all 0.2s ease;
+  // contain: content;
   width: 100%;
+  height: 112px;
+  padding: 10px;
+  align-self: flex-start;
+  position: relative;
+  ::slotted([slot]){
+    color: #656a6d;
+  }
   .card-wrapper{
     width: 100%;
-    border: 1px solid #c1c1c1;
-    box-shadow: 0px 0px 4px 0px #b3b3b3;
-    border-radius: 5px;
+    border: 2px solid #5e92ac;
+    box-shadow: 0px 0px 6px 0px #c4c4c4;
+    border-radius: 4px;
+    position: relative;    
     padding: 20px 20px 0px 20px;
     box-sizing: border-box;
     font-family: Roboto,'sans-serif';
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: 'customer-details professional-details date-details completion-wrapper';
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: 'customer-details professional-details date-details completion-wrapper payment-wrapper';
     grid-column-gap: 20px;
+    background-color: white;
     &:hover{
       cursor: pointer;
+      box-shadow: none;
     }
     .card-item-wrapper{
-      border: 1px solid #CFD8DC;
+      border: 2px solid #5f93ad;
       border-radius: 5px;
       padding: 14px;
       position: relative;
       margin-bottom: 20px;
-      &.card-item-label{
+      .card-item-label{
         position: absolute;
         top: -8px;
         left: 8px;
@@ -32,15 +42,16 @@
         padding: 0px 6px;
         font-size: 14px;
         font-weight: 300;
+        color: #5f93ad;
       }
     }
     .customer-details-wrapper{
       grid-area: customer-details;
       .customer-name{
-    
+        
       }
       .customer-phone{
-      
+        display: none;
       }
     }
     .professional-details-wrapper{
@@ -49,7 +60,7 @@
     
       }
       .professional-phone{
-      
+        display: none;
       }
     }
     
@@ -59,7 +70,7 @@
     
       }
       .date-created{
-      
+        display: none;
       }
     }
     
@@ -76,9 +87,91 @@
     
     .payment-wrapper{
       grid-area: payment-wrapper;
-      display: none;
+      // display: none;
       .service-cost{
+        display: none;
+      }
+      .payment-method{
+        
+      }
+    }
     
+    .completion-wrapper{
+      grid-area: completion-wrapper;
+      .service-completed{
+        
+      }
+      .customer-feedback{
+        display: none;
+      }
+    }
+    .action-buttons-wrapper{
+      display: none;
+      .action-buttons{
+        background: linear-gradient(to right, #1478aa 0%,#191919 100%);
+        border-radius: 4px;
+        border: none;
+        color: white;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 15px;
+        &:hover{
+          cursor: pointer;
+          background: linear-gradient(to left, #1478aa 0%,#191919 100%);
+        }
+      }
+    }   
+  }
+}
+
+:host([active]){
+  width: 80%;
+  height: 316px;
+  align-self: flex-start;
+  .card-wrapper{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'customer-details professional-details date-details'
+                         'type-location payment-wrapper completion-wrapper';
+    .customer-details-wrapper{
+      .customer-name{
+        
+      }
+      .customer-phone{
+        display: block;
+      }
+    }
+    .professional-details-wrapper{
+      .professional-name{
+    
+      }
+      .professional-phone{
+        display: block;
+      }
+    }
+    
+    .date-wrapper{
+      .date-scheduled{
+    
+      }
+      .date-created{
+        display: block;
+      }
+    }
+    
+    .type-location-wrapper{
+      display: block;
+      .service-type{
+    
+      }
+      .service-location{
+      
+      }
+    }
+    
+    .payment-wrapper{
+      display: block;
+      .service-cost{
+        display: block;
       }
       .payment-method{
       
@@ -86,13 +179,30 @@
     }
     
     .completion-wrapper{
-      grid-area: completion-wrapper;
       .service-completed{
-    
-      }
-      .customer-feedback{
         
       }
-    }   
+      .customer-feedback{
+        display: block;
+      }
+    }
+    .action-buttons-wrapper{
+      display: block;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      height: 100%;
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+      justify-content: center;
+      &::after{
+        content:"";
+        clear: both;
+        display: table;
+      }
+    }
   }
+  
 }

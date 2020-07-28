@@ -25,7 +25,7 @@ class FancyCard extends HTMLElement{
 
   toggleCardActivation = (): void => {
     this.isActive= !this.isActive;
-    this.setAttribute("active",`${this.isActive}`);
+    this.isActive === true ? this.setAttribute("active","true") : this.removeAttribute("active");
   }
 
   bindEventListener = (): void => {

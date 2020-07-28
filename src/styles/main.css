@@ -13,7 +13,7 @@ html {
     box-sizing: border-box;
 }
 #app{
-  background-color: #90A4AE;
+  background: linear-gradient(to left, #1478aa 0%,#003955 100%);
   padding: 20px;
   display: flex;
   height: 100vh;

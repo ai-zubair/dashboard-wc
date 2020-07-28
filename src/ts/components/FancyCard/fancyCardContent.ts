@@ -1,9 +1,11 @@
-import styles from 'bundle-text:./fancyCard.scss';
+//@ts-ignore
+import cardStyles from 'bundle-text:./fancyCard.scss';
 
 export const FancyCardContent = `
   <style>
-    ${styles}
+    ${cardStyles}
   </style>
+
   <div id="card-wrapper" class="card-wrapper">
 
     <div class="customer-details-wrapper">
@@ -64,14 +66,14 @@ export const FancyCardContent = `
 
     <div class="payment-wrapper">
 
-      <div class="card-item-wrapper service-cost">
-        <label class="card-item-label">Amount</label>
-        <slot name="service-cost"></slot>
-      </div>
-
       <div class="card-item-wrapper payment-method">
         <label class="card-item-label">Method</label>
         <slot name="payment-method"></slot>
+      </div>
+
+      <div class="card-item-wrapper service-cost">
+        <label class="card-item-label">Amount</label>
+        <slot name="service-cost"></slot>
       </div>
 
     </div>
@@ -86,6 +88,14 @@ export const FancyCardContent = `
       <div class="card-item-wrapper customer-feedback">
         <label class="card-item-label">Rating</label>
         <slot name="customer-feedback"></slot>
+      </div>
+
+
+      <div class="action-buttons-wrapper">
+        <button class="action-buttons">Delete</button>
+        <button class="action-buttons">Refund</button>
+        <button class="action-buttons">Archive</button>
+        <button class="action-buttons">Legal</button>
       </div>
 
     </div>
