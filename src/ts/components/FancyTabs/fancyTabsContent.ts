@@ -61,6 +61,8 @@ export const FancyTabContent = `
     ::slotted([slot="panel"][active]){
       width: 100%;
       height: 100%;
+      display: flex;
+      justify-content: center;
     }
     ::slotted(:not([active])[slot="panel"]){
       display: none;
